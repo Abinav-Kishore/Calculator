@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2374/2374370.png">
+        <style>
+            .outline {
+                /* background-color: white; */
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+            input {
+                margin-top: 3px;
+                text-align: center;
+            }
+            .nbutton {
+                background-color: rgb(51, 51, 51);
+                color: white;
+                width: 50px;
+                height: 30px;
+            }
+            .sbutton {
+                background-color: rgb(51, 51, 51);
+                color: rgb(255, 140, 0);
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                width: 50px;
+                height: 30px;
+            }
+            .abutton {
+                background-color: green;
+                color: white;
+                width: 50px;
+                height: 30px;
+            }
+            ::placeholder {
+                color: white;
+                text-align: end;
+            }
+            .box {
+                text-align: end;
+                background-color: black;
+                color: white;
+                border-style: solid;
+                width: 203px;
+                border-color: rgb(255, 140, 0);
+            }
+        </style>
+    </head>
+    <body style="background-color: black; align-items: center;">
+        <div class="outline">
+        <input class="box" type="text" placeholder="0" id="output"><br>
+        <input class="sbutton" type="button" value="(" onclick="app('(');">
+        <input class="sbutton" type="button" value=")" onclick="app(')');">
+        <input class="sbutton" type="button" value="C" onclick="s=s.slice(0,-1);app('');">
+        <input class="sbutton" type="button" value="AC" onclick="s='';app('');"><br>
+        <input class="nbutton" type="button" value="7" onclick="app('7');">
+        <input class="nbutton" type="button" value="8" onclick="app('8');">
+        <input class="nbutton" type="button" value="9" onclick="app('9');">
+        <input class="sbutton" type="button" value="+" onclick="app('+');"><br>
+        <input class="nbutton" type="button" value="4" onclick="app('4');">
+        <input class="nbutton" type="button" value="5" onclick="app('5');">
+        <input class="nbutton" type="button" value="6" onclick="app('6');">
+        <input class="sbutton" type="button" value="-" onclick="app('-');"><br>
+        <input class="nbutton" type="button" value="1" onclick="app('1');">
+        <input class="nbutton" type="button" value="2" onclick="app('2');">
+        <input class="nbutton" type="button" value="3" onclick="app('3');">
+        <input class="sbutton" type="button" value="*" onclick="app('*');"><br>
+        <input class="nbutton" type="button" value="." onclick="app('.');">
+        <input class="nbutton" type="button" value="0" onclick="app('0');">
+        <input class="sbutton" type="button" value="/" onclick="app('/');">
+        <input class="abutton" type="button" value="=" onclick=ans();
+        </div>>       
+        <script>
+            let s='';
+            function app(val) {
+                if (val==='(') {
+                    if ('+-*/'.includes(s[s.length-1])) {
+                        s+='(';
+                    }
+                    else {
+                        s+='*(';
+                    }
+                }
+                else if (val===')') {
+                    if ('+-'.includes(s[s.length-1])) {
+                        s+='0)';
+                    }
+                    else if ('*/'.includes(s[s.length-1])) {
+                        s+='1)';
+                    }
+                    else {
+                        s+=')';
+                    }
+                }
+                else {
+                    s+=val;
+                }
+                document.getElementById('output').value=s;
+            }
+            function ans() {
+                document.getElementById('output').value=eval(s);
+                s=eval(s);
+            }
+        </script>
+    </body>
+</html>
